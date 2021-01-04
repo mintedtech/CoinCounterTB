@@ -12,8 +12,12 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private CoinCounter mCoinCounter;
+    EditText pennyAmount, nickelAmount, dimeAmount, quarterAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +26,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        TextView statusBar = findViewById(R.id.status_bar);
+        pennyAmount = findViewById(R.id.enter_pennies);
+        nickelAmount = findViewById(R.id.enter_nickels);
+        dimeAmount = findViewById(R.id.enter_dimes);
+        quarterAmount = findViewById(R.id.enter_quarters);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                statusBar.setText("Calculation Results");
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

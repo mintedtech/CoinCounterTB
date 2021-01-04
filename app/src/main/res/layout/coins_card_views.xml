@@ -11,11 +11,14 @@
         android:orientation="vertical"
         app:cardBackgroundColor="@color/defaultBackgroundColor"
         app:layout_constraintTop_toBottomOf="@+id/card_view_banner"
-        app:layout_constraintLeft_toRightOf="@+id/card_view_dime">
+        app:layout_constraintLeft_toRightOf="@+id/card_view_dime"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginLeft="@dimen/standard_margin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
             <ImageView
                 android:id="@+id/image_view_quarter"
                 android:layout_width="wrap_content"
@@ -26,11 +29,14 @@
                 app:layout_constraintBottom_toTopOf="@id/enter_quarters" />
             <EditText
                 android:id="@+id/enter_quarters"
+                android:inputType="number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@+id/image_view_quarter" />
+                app:layout_constraintTop_toBottomOf="@+id/image_view_quarter"
+                android:hint="0"
+                android:ems="2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -41,7 +47,9 @@
         android:orientation="vertical"
         app:cardBackgroundColor="@color/defaultBackgroundColor"
         app:layout_constraintTop_toBottomOf="@+id/card_view_banner"
-        app:layout_constraintLeft_toRightOf="@+id/card_view_nickel">
+        app:layout_constraintLeft_toRightOf="@+id/card_view_nickel"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginLeft="@dimen/standard_margin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -60,7 +68,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@+id/image_view_dime" />
+                app:layout_constraintTop_toBottomOf="@+id/image_view_dime"
+                android:hint="0"
+                android:ems="2"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -71,7 +81,9 @@
         android:orientation="vertical"
         app:cardBackgroundColor="@color/defaultBackgroundColor"
         app:layout_constraintTop_toBottomOf="@+id/card_view_banner"
-        app:layout_constraintLeft_toRightOf="@+id/card_view_penny">
+        app:layout_constraintLeft_toRightOf="@+id/card_view_penny"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginLeft="@dimen/standard_margin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -90,7 +102,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@+id/image_view_nickel" />
+                app:layout_constraintTop_toBottomOf="@+id/image_view_nickel"
+                android:hint="0"
+                android:ems="2"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -100,7 +114,9 @@
         android:layout_width="wrap_content"
         android:orientation="vertical"
         app:cardBackgroundColor="@color/defaultBackgroundColor"
-        app:layout_constraintTop_toBottomOf="@+id/card_view_banner">
+        app:layout_constraintTop_toBottomOf="@+id/card_view_banner"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginLeft="@dimen/standard_margin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -119,7 +135,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@+id/image_view_penny" />
+                app:layout_constraintTop_toBottomOf="@+id/image_view_penny"
+                android:hint="0"
+                android:ems="2"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </merge>
