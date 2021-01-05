@@ -38,17 +38,17 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int total = calculateTotal();
+                double total = calculateTotal();
                 statusBar.setText("Calculation Results: " + total);
             }
         });
     }
 
-    private int calculateTotal() {
-        int pennyVal = Integer.parseInt(pennyAmount.getText().toString());
-        int nickelVal = Integer.parseInt(nickelAmount.getText().toString()) * 5;
-        int dimeVal = Integer.parseInt(dimeAmount.getText().toString()) * 10;
-        int quarterVal = Integer.parseInt(quarterAmount.getText().toString()) * 25;
+    private double calculateTotal() {
+        double pennyVal = Integer.parseInt(pennyAmount.getText().toString()) * .01;
+        double nickelVal = Integer.parseInt(nickelAmount.getText().toString()) * .05;
+        double dimeVal = Integer.parseInt(dimeAmount.getText().toString()) * .1;
+        double quarterVal = Integer.parseInt(quarterAmount.getText().toString()) * .25;
         return pennyVal + nickelVal + dimeVal + quarterVal;
     }
 
