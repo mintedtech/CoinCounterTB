@@ -3,8 +3,8 @@ package com.example.coincountertb;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -18,39 +18,66 @@ import android.widget.TextView;
 import lib.Utils;
 
 public class MainActivity extends AppCompatActivity {
-    private CoinCounter mCoinCounter;
+    private CoinCounter mCoinCounter = new CoinCounter();
     EditText pennyAmount, nickelAmount, dimeAmount, quarterAmount;
+    TextView statusBar;
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("COINCOUNTER", CoinCounter.getJSONStringFrom(mCoinCounter));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mCoinCounter = CoinCounter.getCoinCounterObjectFromJSONString(savedInstanceState.getString("COINCOUNTER"));
+        displayCalculation();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        TextView statusBar = findViewById(R.id.status_bar);
-        pennyAmount = findViewById(R.id.enter_pennies);
-        nickelAmount = findViewById(R.id.enter_nickels);
-        dimeAmount = findViewById(R.id.enter_dimes);
-        quarterAmount = findViewById(R.id.enter_quarters);
+        setupToolbar();
+        setupViews();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double total = calculateTotal();
-                statusBar.setText("Calculation Results: " + total);
+                setAmounts();
+                displayCalculation();
             }
         });
     }
 
-    private double calculateTotal() {
-        double pennyVal = Integer.parseInt(pennyAmount.getText().toString()) * .01;
-        double nickelVal = Integer.parseInt(nickelAmount.getText().toString()) * .05;
-        double dimeVal = Integer.parseInt(dimeAmount.getText().toString()) * .1;
-        double quarterVal = Integer.parseInt(quarterAmount.getText().toString()) * .25;
-        return pennyVal + nickelVal + dimeVal + quarterVal;
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
+
+    private void setupViews() {
+        statusBar = findViewById(R.id.status_bar);
+        pennyAmount = findViewById(R.id.enter_pennies);
+        nickelAmount = findViewById(R.id.enter_nickels);
+        dimeAmount = findViewById(R.id.enter_dimes);
+        quarterAmount = findViewById(R.id.enter_quarters);
+    }
+
+    private void setAmounts() {
+        mCoinCounter.setCountOfPennies(pennyAmount.getText().toString());
+        mCoinCounter.setCountOfNickels(nickelAmount.getText().toString());
+        mCoinCounter.setCountOfDimes(dimeAmount.getText().toString());
+        mCoinCounter.setCountOfQuarters(quarterAmount.getText().toString());
+    }
+
+
+    private void displayCalculation() {
+        String result = "Calculation Results: " + mCoinCounter.getCentsValueTotal();
+        statusBar.setText(result);
+    }
+
 
 
     @Override
@@ -74,10 +101,17 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_clear) {
-            pennyAmount.setText("0");
-            nickelAmount.setText("0");
-            dimeAmount.setText("0");
-            quarterAmount.setText("0");
+            pennyAmount.getText().clear();
+            nickelAmount.getText().clear();
+            dimeAmount.getText().clear();
+            quarterAmount.getText().clear();
+            statusBar.setText(R.string.name);
+
+            mCoinCounter.setCountOfPennies(0);
+            mCoinCounter.setCountOfNickels(0);
+            mCoinCounter.setCountOfDimes(0);
+            mCoinCounter.setCountOfQuarters(0);
+
             return true;
         }
 

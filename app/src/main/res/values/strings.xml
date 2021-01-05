@@ -12,4 +12,6 @@
     <string name="clear_all">Clear All</string>
     <string name="action_about">About</string>
     <string name="about_info">Tehila Bamshad\'s coin calculator app</string>
+    <string name="banner_description">Please enter in the coin count</string>
+    <string name="name">Tehila Bamshad</string>
 </resources>
