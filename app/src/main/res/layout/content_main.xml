@@ -35,14 +35,14 @@
         style="@style/default_style"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/slim_margin"
         android:background="@color/white"
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
+        android:layout_marginBottom="?actionBarSize"
         android:text="Tehila Bamshad"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="4dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
 
     </TextView>

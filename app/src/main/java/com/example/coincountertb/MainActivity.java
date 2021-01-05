@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import lib.Utils;
+
 public class MainActivity extends AppCompatActivity {
     private CoinCounter mCoinCounter;
     EditText pennyAmount, nickelAmount, dimeAmount, quarterAmount;
@@ -36,9 +38,18 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                statusBar.setText("Calculation Results");
+                int total = calculateTotal();
+                statusBar.setText("Calculation Results: " + total);
             }
         });
+    }
+
+    private int calculateTotal() {
+        int pennyVal = Integer.parseInt(pennyAmount.getText().toString());
+        int nickelVal = Integer.parseInt(nickelAmount.getText().toString()) * 5;
+        int dimeVal = Integer.parseInt(dimeAmount.getText().toString()) * 10;
+        int quarterVal = Integer.parseInt(quarterAmount.getText().toString()) * 25;
+        return pennyVal + nickelVal + dimeVal + quarterVal;
     }
 
 
@@ -57,7 +68,16 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            Utils.showInfoDialog (MainActivity.this,
+                R.string.action_about, R.string.about_info);
+            return true;
+        }
+        if (id == R.id.action_clear) {
+            pennyAmount.setText("0");
+            nickelAmount.setText("0");
+            dimeAmount.setText("0");
+            quarterAmount.setText("0");
             return true;
         }
 
